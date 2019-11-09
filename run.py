@@ -1,8 +1,11 @@
 import sys
+
+import player as player
 from PyQt5 import QtGui
 from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QPushButton, QLineEdit, QVBoxLayout
-from PyQt5.QtCore import QSize
+from PyQt5.QtCore import  *
 from PyQt5.QtGui import QImage, QPalette, QBrush
+from PyQt5.QtMultimedia import *
 from pyowm import OWM
 
 class MyApp(QWidget):
@@ -15,15 +18,7 @@ class MyApp(QWidget):
 
     def initUI(self):
 
-        btn1 = QPushButton('ye', self)
-        btn1.setCheckable(True)
-        btn1.toggle()
-
-        btn1.clicked.connect(self.onChanged)
-        vbox = QVBoxLayout()
-        vbox.addWidget(btn1)
-
-        oImage = QImage("./image/weather_bg_pastel1.png")
+        oImage = QImage("./res/weather_bg_pastel1.png")
         sImage = oImage.scaled(QSize(300,200))
         palette = QPalette()
         palette.setBrush(10, QBrush(sImage))
@@ -36,7 +31,6 @@ class MyApp(QWidget):
         self.qle = QLineEdit(self)
         self.qle.move(100, 50)
         self.qle.editingFinished.connect(self.onChanged)
-        self.setLayout(vbox)
         self.setWindowTitle('Weather is you')
         self.setGeometry(300, 300, 300, 200)
         self.show()
@@ -61,5 +55,8 @@ class MyApp(QWidget):
 if __name__ == '__main__':
 
     app = QApplication(sys.argv)
+
+
+
     ex = MyApp()
     sys.exit(app.exec_())
