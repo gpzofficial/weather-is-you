@@ -30,7 +30,7 @@ class MyApp(QWidget):
         self.qle.move(100, 50)
         self.qle.editingFinished.connect(self.onChanged)
         self.setLayout(vbox)
-        self.setWindowTitle('Weather is yours')
+        self.setWindowTitle('Weather is you')
         self.setGeometry(300, 300, 300, 200)
         self.show()
 
@@ -49,7 +49,7 @@ class MyApp(QWidget):
         owm = OWM(API_key='852402acec6a21be7f4fb7db7ec6df67')
         obs = owm.weather_at_place(city)
         w = obs.get_weather()
-        return "{} - {} {} ℃".format(city,w.get_status(), w.get_temperature(unit="celsius")['temp'],   )
+        return "{} - {} {} ℃\nMax: {}".format(city,w.get_status(), w.get_temperature(unit="celsius")['temp'], w.get_temperature(unit="celsius")["temp_max"])
 
 if __name__ == '__main__':
 
