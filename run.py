@@ -1,7 +1,8 @@
 import sys
 from PyQt5 import QtGui
-from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QVBoxLayout, QPushButton, QLineEdit, QInputDialog, QVBoxLayout
-from PyQt5.QtCore import Qt
+from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QPushButton, QLineEdit, QVBoxLayout
+from PyQt5.QtCore import QSize
+from PyQt5.QtGui import QImage, QPalette, QBrush
 from pyowm import OWM
 
 class MyApp(QWidget):
@@ -21,6 +22,12 @@ class MyApp(QWidget):
         btn1.clicked.connect(self.onChanged)
         vbox = QVBoxLayout()
         vbox.addWidget(btn1)
+
+        oImage = QImage("./image/weather_bg_pastel1.png")
+        sImage = oImage.scaled(QSize(300,200))
+        palette = QPalette()
+        palette.setBrush(10, QBrush(sImage))
+        self.setPalette(palette)
 
         self.lbl = QLabel(self)
         self.lbl.move(60, 140)
